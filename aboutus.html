@@ -243,7 +243,39 @@
             filter: brightness(82%);
             /* 調整亮度，使ICON變暗 */
         }
+        #tyModal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
 
+        .tyModalContent {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .tyClose {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .tyClose:hover,
+        .tyClose:focus {
+            color: #000;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -352,8 +384,25 @@
         });
 
     </script>
+        <div id="tyModal">
+            <div class="tyModalContent">
+                <span class="tyClose">&times;</span>
+                <h1>好康報報</h1>
+                <p>優惠資訊</p>
+            </div>
+        </div>
+        <script>
+                    var modalElem = document.getElementById("tyModal");
+        var spanElem = document.getElementsByClassName("tyClose")[0];
 
+        spanElem.onclick = function () {
+            modalElem.style.display = "none";
+        }
 
+        setTimeout(function () {
+            modalElem.style.display = "block";
+        }, 1000);
+        </script>
     <section>
         <h2>我們的故事</h2>
         <p>三代目 桃栗是一家位於台中的日式料理亭，我們花了三年的時間做籌備，終於在 2023 年 6 月 28 日開業。日文裡有一句話叫做「桃栗三年柿八年」，意思是桃子和栗子要種三年才能結果，而柿子要種八年才能結果。因此，我們取了「桃栗」做為店名，寓意我們的努力和耐心。
