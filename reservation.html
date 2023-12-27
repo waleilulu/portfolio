@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>reservation</title>
+    <style>
+        /* 導航欄樣式 */
+        nav {
+            background-color: #333;
+            /* 導航欄背景顏色 */
+            overflow: hidden;
+
+        }
+
+        /* 導航連結樣式 */
+        nav a {
+            font-size: 20px;
+            float: left;
+            /* 使連結在水平方向浮動 */
+            display: block;
+            /* 設置為區塊元素，以便設定寬度、高度和其他樣式 */
+            color: white;
+            /* 文字顏色 */
+            text-align: center;
+            /* 文字居中 */
+            padding: 14px 16px;
+            /* 內邊距，增加連結的可點擊區域 */
+            text-decoration: none;
+            /* 去除下劃線 */
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* 隱藏垂直方向的滾動條 */
+        body {
+            margin: 0;
+        }
+
+        /* 菜單內容排版樣式 */
+        .menu-container {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .menu-item {
+            margin-bottom: 30px;
+        }
+
+        .menu-item h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+
+        .menu-item p {
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-align: center;
+
+        }
+
+        .menu-item span {
+            font-size: 18px;
+            color: #ff6600;
+            /* 橙色文字 */
+        }
+
+        /* 移除列表項目的點（項目符號） */
+        .no-bullets {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* 調整列表項目的內邊距和外邊距 */
+        .no-bullets li {
+            margin-bottom: 5px;
+        }
+
+        /* 文字置左的列表 */
+        .left-align {
+            text-align: center;
+        }
+
+        /* 文字置中的服務費提示 */
+        .servicefee {
+            text-align: center;
+        }
+
+        body {
+            background-image: url(menu_background.png);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            /* 讓背景固定 */
+
+        }
+
+        /* 下拉式選單樣式 */
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+        .dropbtn {
+            font-size: 20px;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .misenamae {
+            float: right;
+            /* 讓元素浮動到右邊 */
+            padding: 8px 8px;
+            /* 設定內邊距，使其與其他連結保持一致 */
+        }
+
+        .misenamae img {
+            position: relative;
+            top: 10px;
+            /* 根據需要調整上方偏移值 */
+            height: 40px;
+            width: auto;
+        }
+
+
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 32px;
+            /* 調整表單標題字型大小 */
+        }
+
+        p {
+            font-size: 27px;
+            /* 調整通用段落文字字型大小 */
+        }
+
+        select,
+        input {
+            font-size: 20px;
+            /* 調整表單元素字型大小 */
+        }
+
+         /* Footer樣式 */
+         footer {
+            background-color: #333;
+            /* 與導航欄相同的背景顏色 */
+            overflow: hidden;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Footer資料訊息樣式 */
+        footer .info {
+            float: left;
+            text-align: left;
+        }
+
+        /* Footer連結樣式 */
+        footer a {
+            font-size: 16px;
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 3px 3px;
+            text-decoration: none;
+        }
+
+        /* Footer連結懸停樣式 */
+        footer a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* Footer ICON樣式 - 去除浮動，使其在水平方向上置中 */
+        footer .social-media {
+            float: right
+        }
+
+        /* 文字提示樣式 - 調整為白色，使其更顯眼 */
+        footer .info p {
+            color: white;
+            font-size: 13px;
+            /* 調整字體大小 */
+            margin: 4px 0;
+            /* 調整邊距 */
+        }
+
+        /* Footer連結懸停樣式 - 增加ICON的懸停效果 */
+        footer a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* Footer ICON大小調整 */
+        footer .social-media img {
+            width: 25px;
+            /* 調整ICON的寬度 */
+            height: auto;
+            /* 保持高度自適應 */
+            margin: 0 2px;
+            /* 添加一些間距，使ICON之間有些距離 */
+        }
+
+        /* Footer ICON懸停效果 */
+        footer .social-media a:hover img {
+            filter: brightness(82%);
+            /* 調整亮度，使ICON變暗 */
+        }
+
+        /* 以下為聊天室 */
+        .chat-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+        .chat-box {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .chat-header {
+            background-color: #333;
+            color: #fff;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .chat-messages {
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 8px;
+        }
+
+        #message-input {
+            width: 70%;
+            padding: 8px;
+            margin: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 8px;
+            margin: 8px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .closebuttom {
+            margin-left: 280px;
+            /* 調整右邊距 */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 導航欄 -->
+    <nav>
+        <a id="homepage-link" href="homepage.html">首頁</a>
+        <!-- 菜單下拉選單 -->
+        <div class="dropdown">
+            <button id="menu-link" , class="dropbtn">菜單</button>
+            <div class="dropdown-content">
+                <a id="menu_fullcourse-link" href="menu_fullcourse.html">套餐</a>
+                <a id="menu_alacarte-link" href="menu_alacarte.html">單點</a>
+                <a id="drinks_and_desserts-link" href="drinks_and_desserts.pdf#view=FitH&amp;zoom=100"
+                    target="_blank">飲品/甜點</a>
+                <!-- <a href="drinks_and_desserts.pdf" target="_blank">飲品/甜點</a> -->
+
+            </div>
+        </div>
+        <!-- /菜單下拉選單 -->
+        <a id="aboutus-link" href="aboutus.html">關於我們</a>
+        <a id="reservation-link" href="reservation.html">訂位預約</a>
+        <div class="misenamae">
+            <img src="misenamae.jpg" alt="">
+        </div>
+    </nav>
+ 
+    <script> //導航欄變日文字
+
+        // 首頁變日文字
+        const homepageLink = document.getElementById("homepage-link");
+
+        homepageLink.addEventListener("mouseenter", function () {
+            homepageLink.innerText = "ホームページ";
+        });
+
+        homepageLink.addEventListener("mouseleave", function () {
+            homepageLink.innerText = "首頁";
+        });
+
+        //菜單變日文字
+        const menuLink = document.getElementById("menu-link");
+
+        menuLink.addEventListener("mouseenter", function () {
+            menuLink.innerText = "メニュー";
+        });
+
+        menuLink.addEventListener("mouseleave", function () {
+            menuLink.innerText = "菜單";
+        });
+
+        //套餐變日文字
+        const menu_fullcourseLink = document.getElementById("menu_fullcourse-link");
+
+        menu_fullcourseLink.addEventListener("mouseenter", function () {
+            menu_fullcourseLink.innerText = "会席料理";
+        });
+
+        menu_fullcourseLink.addEventListener("mouseleave", function () {
+            menu_fullcourseLink.innerText = "套餐";
+        });
+
+        //單點變日文字
+        const menu_alacarteLink = document.getElementById("menu_alacarte-link");
+
+        menu_alacarteLink.addEventListener("mouseenter", function () {
+            menu_alacarteLink.innerText = "単品";
+        });
+
+        menu_alacarteLink.addEventListener("mouseleave", function () {
+            menu_alacarteLink.innerText = "單點";
+        });
+
+
+        // 飲品甜點變日文字
+        const drinks_and_dessertsLink = document.getElementById("drinks_and_desserts-link");
+
+        drinks_and_dessertsLink.addEventListener("mouseenter", function () {
+            drinks_and_dessertsLink.innerText = "飲み物とデザート";
+        });
+
+        drinks_and_dessertsLink.addEventListener("mouseleave", function () {
+            drinks_and_dessertsLink.innerText = "飲品/甜點";
+        });
+
+        // 關於我們變日文字
+        const aboutusLink = document.getElementById("aboutus-link");
+
+        aboutusLink.addEventListener("mouseenter", function () {
+            aboutusLink.innerText = "会社概要";
+        });
+
+        aboutusLink.addEventListener("mouseleave", function () {
+            aboutusLink.innerText = "關於我們";
+        });
+
+        // 訂位預約變日文字
+        const reservationLink = document.getElementById("reservation-link");
+
+        reservationLink.addEventListener("mouseenter", function () {
+            reservationLink.innerText = "オンライン予約";
+        });
+
+        reservationLink.addEventListener("mouseleave", function () {
+            reservationLink.innerText = "訂位預約";
+        });
+
+    </script>
+
+
+    <section>
+        <form action="/reserve" method="post" onsubmit="javascript:alert('已收到您的預約，稍後會回傳訂位確認簡訊至您的手機'); return false;">
+            <h1>餐廳網路訂位預約表</h1>
+            <p>請選擇您想要預約的日期：</p>
+            <input type="date" id="date" name="date" min="<?=date('Y-m-d')?>" max="<?=date('Y-m-d', strtotime(" +1
+                month", time()))?>
+            <script>
+                var dateInput = document.getElementById("date");
+                var currentDate = new Date();
+                dateInput.min = convertToISO(currentDate);
+
+                var oneMonthLater = new Date();
+                oneMonthLater.setDate(currentDate.getDate() + 30); // 30天後
+                dateInput.max = convertToISO(oneMonthLater);
+
+                function convertToISO(timebit) {
+                    return timebit.toISOString().slice(0, 10);
+                }
+
+                // 檢查時間選擇
+                dateInput.addEventListener('change', function () {
+                    var selectedDate = new Date(dateInput.value);
+                    var today = new Date();
+
+                    // 如果選擇的日期是今天，啟用未來的時段，並在預約時段的前 10 分鐘內預約，超過就禁用
+                    if (isToday(selectedDate)) {
+                        enableFutureTimes(selectedDate);
+                    } else {
+                        // 否則，啟用所有時段
+                        enableAllTimes();
+                    }
+                });
+
+                function isToday(date) {
+                    var today = new Date();
+                    return date.getDate() === today.getDate() &&
+                        date.getMonth() === today.getMonth() &&
+                        date.getFullYear() === today.getFullYear();
+                }
+
+                function enableFutureTimes(selectedDate) {
+                    var timeSelect = document.querySelector('select[name="time"]');
+                    var currentTime = new Date();
+                    var currentHour = currentTime.getHours();
+                    var currentMinutes = currentTime.getMinutes();
+                    var timeOptions = timeSelect.querySelectorAll('option');
+
+                    // 啟用未來的時段，並在預約時段的前 10 分鐘內預約，超過就禁用
+                    timeOptions.forEach(function (option) {
+                        var optionHour = parseInt(option.value.split(":")[0]);
+                        var optionMinutes = parseInt(option.value.split(":")[1]);
+
+                        if (optionHour > currentHour || (optionHour === currentHour && optionMinutes > (currentMinutes + 10))) {
+                            option.disabled = false;
+                        } else {
+                            option.disabled = true;
+                        }
+                    });
+                }
+
+                function enableAllTimes() {
+                    var timeSelect = document.querySelector('select[name="time"]');
+                    var timeOptions = timeSelect.querySelectorAll('option');
+
+                    // 啟用所有時段
+                    timeOptions.forEach(function (option) {
+                        option.disabled = false;
+                    });
+                }
+
+            </script>
+
+            <p>請選擇您想要預約的時間：</p>
+            <select name="time" required>
+                <optgroup label="中餐時段">
+                    <option value="11:00">11:00 AM</option>
+                    <option value="11:30">11:30 AM</option>
+                    <option value="12:00">12:00 PM</option>
+                    <option value="12:30">12:30 PM</option>
+                    <option value="13:00">01:00 PM</option>
+                </optgroup>
+                <optgroup label="晚餐時段">
+                    <option value="17:30">05:30 PM</option>
+                    <option value="18:00">06:00 PM</option>
+                    <option value="18:30">06:30 PM</option>
+                    <option value="19:00">07:00 PM</option>
+                    <option value="19:30">07:30 PM</option>
+                    <option value="20:00">08:00 PM</option>
+                </optgroup>
+            </select>
+            <p>請選擇您想要預約的人數：</p>
+            <p>大人：</p>
+            <input type="number" name="adult" min="1" max="20" required>
+            <p>小孩：</p>
+            <input type="number" name="child" min="0" max="20" required>
+            <p>請輸入您的姓名：</p>
+            <input type="text" name="name" required>
+            <p>請輸入您的手機號碼：</p>
+            <input type="tel" name="phone" pattern="09[0-9]{8}" required>
+            <p>請輸入雙旦禮遇優惠碼：</p>
+            <input type="text" name="promocode" pattern="[0-9]{8}" placeholder="20240101">
+            <p><input type="submit" value="提交預約"></p>
+        </form>
+
+    </section>
+
+    <!-- 以下為聊天室 -->
+
+    <div class="chat-icon" onclick="toggleChat()">
+        <img src="chatroom.png" alt="聊天圖示">
+    </div>
+
+    <div id="chat-box" class="chat-box">
+        <div class="chat-header">
+            <button class="closebuttom" onclick="toggleChat()">關閉</button>
+        </div>
+        <div class="chat-messages" id="chat-messages"></div>
+        <input type="text" id="message-input" placeholder="輸入訊息...">
+        <button onclick="sendMessage()">送出</button>
+    </div>
+    <script>
+        function toggleChat() {
+            var chatBox = document.getElementById('chat-box');
+            chatBox.style.display = chatBox.style.display === 'none' ? 'block' : 'none';
+        }
+    
+        function sendMessage() {
+            var messageInput = document.getElementById('message-input');
+            var message = messageInput.value.trim(); // 使用 trim() 移除字串前後的空白
+    
+            if (message !== '') { // 檢查輸入是否為空
+                var chatMessages = document.getElementById('chat-messages');
+                chatMessages.innerHTML += '<div class="message">你： ' + message + '</div>';
+                messageInput.value = '';
+            }
+        }
+    </script>
+
+ <!-- 以下為footer -->
+ <footer>
+    <div class="info">
+        <p>地址：408 台中市南屯區公益路二段51號</p>
+        <p>電話：(04) 2326-5860</p>
+        <p>Email：sandaime@momokuri.com.tw</p>
+        <p>All rights reserved © 2023 三代目 桃栗</p>
+    </div>
+
+    <div class="social-media">
+        <a href="https://www.facebook.com/facebook" target="_blank"><img src="icon-facebook.png" alt="Facebook"></a>
+        <a href="https://www.instagram.com/instagram/?igshid=YTQwZjQ0NmI0OA%3D%3D" target="_blank"><img src="icon-instagram.png" alt="Instagram"></a>
+        <a href="https://twitter.com/XSpaces" target="_blank"><img src="icon-twitter.png" alt="Instagram"></a>
+        <a href="https://line.me/tw/" target="_blank"><img src="icon-line.png" alt="Line"></a>
+    </div>
+    
+</footer>
+
+</body>
+
+</html>

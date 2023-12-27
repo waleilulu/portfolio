@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <style>
+        /* 導航欄樣式 */
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        /* 導航連結 */
+        nav a {
+            font-size: 20px;
+            float: left;
+            /* 使連結在水平方向浮動 */
+            display: block;
+            /* 設置為區塊元素，以便設定寬度、高度和其他樣式 */
+            color: white;
+            /* 文字顏色 */
+            text-align: center;
+            /* 文字居中 */
+            padding: 14px 16px;
+            /* 內邊距，增加連結的可點擊區域 */
+            text-decoration: none;
+            /* 去除下劃線 */
+        }
+
+        /* 鼠標懸停時的樣式 */
+        nav a:hover {
+            background-color: #ddd;
+            /* 懸停時的背景顏色 */
+            color: black;
+            /* 懸停時的文字顏色 */
+        }
+
+
+        /* 隱藏垂直方向的滾動條 */
+        body {
+            margin: 0;
+            overflow-y: hidden;
+        }
+
+        /* 左上角下拉選單樣式 */
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+        .dropdown .dropbtn {
+            font-size: 20px;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .misenamae {
+            position: absolute;
+            top: 10px;
+            /* 設定圖片在垂直方向上的位置 */
+            right: 10px;
+            /* 設定圖片在水平方向上的位置 */
+        }
+
+        .misenamae img {
+            height: 40px;
+            /* 設定圖片的高度，可以根據需要進行調整 */
+            width: auto;
+            /* 讓寬度自動調整，以保持原始圖片的寬高比 */
+        }
+
+        .img-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: slide 4s infinite;
+        }
+
+        @keyframes slide {
+            0% {
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            40% {
+                opacity: 1;
+            }
+
+            60% {
+                opacity: 1;
+            }
+
+            80% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+
+        .ad-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 300px;
+            /* 調整廣告容器的寬度 */
+            z-index: 1000;
+            /* 調整 z-index，使其位於其他元素之上 */
+        }
+
+        .promocodead {
+            width: 150%;
+            height: auto;
+            display: block;
+        }
+
+        .cancel-button {
+            position: absolute;
+            top: 4px;
+            left: 320px;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 導航欄 -->
+    <nav>
+        <a id="homepage-link" href="homepage.html">首頁</a>
+        <!-- 菜單下拉選單 -->
+        <div class="dropdown">
+            <button id="menu-link" , class="dropbtn">菜單</button>
+            <div class="dropdown-content">
+                <a id="menu_fullcourse-link" href="menu_fullcourse.html">套餐</a>
+                <a id="menu_alacarte-link" href="menu_alacarte.html">單點</a>
+                <a id="drinks_and_desserts-link" href="drinks_and_desserts.pdf#view=FitH&amp;zoom=100"
+                    target="_blank">飲品/甜點</a>
+                <!-- <a href="drinks_and_desserts.pdf" target="_blank">飲品/甜點</a> -->
+
+            </div>
+        </div>
+        <!-- /菜單下拉選單 -->
+        <a id="aboutus-link" href="aboutus.html">關於我們</a>
+        <a id="reservation-link" href="reservation.html">訂位預約</a>
+    </nav>
+
+    <!-- 廣告彈出介面 -->
+    <div class="ad-container">
+        <img class="promocodead" src="promocode.png" alt="廣告圖示">
+        <div class="cancel-button" onclick="closeAd()">x</div>
+    </div>
+
+    <script>
+        function closeAd() {
+            var adContainer = document.querySelector('.ad-container');
+            adContainer.style.display = 'none';
+        }
+    </script>
+
+    <!-- 網頁內容 -->
+    <div class="img-container">
+        <img id="slideshow" src="hp_7.jpg" alt="">
+    </div>
+
+    <div class="misenamae">
+        <img src="misenamae.jpg" alt="">
+    </div>
+
+    <script> //導航欄變日文字
+
+        // 首頁變日文字
+        const homepageLink = document.getElementById("homepage-link");
+
+        homepageLink.addEventListener("mouseenter", function () {
+            homepageLink.innerText = "ホームページ";
+        });
+
+        homepageLink.addEventListener("mouseleave", function () {
+            homepageLink.innerText = "首頁";
+        });
+
+        //菜單變日文字
+        const menuLink = document.getElementById("menu-link");
+
+        menuLink.addEventListener("mouseenter", function () {
+            menuLink.innerText = "メニュー";
+        });
+
+        menuLink.addEventListener("mouseleave", function () {
+            menuLink.innerText = "菜單";
+        });
+
+        //套餐變日文字
+        const menu_fullcourseLink = document.getElementById("menu_fullcourse-link");
+
+        menu_fullcourseLink.addEventListener("mouseenter", function () {
+            menu_fullcourseLink.innerText = "会席料理";
+        });
+
+        menu_fullcourseLink.addEventListener("mouseleave", function () {
+            menu_fullcourseLink.innerText = "套餐";
+        });
+
+        //單點變日文字
+        const menu_alacarteLink = document.getElementById("menu_alacarte-link");
+
+        menu_alacarteLink.addEventListener("mouseenter", function () {
+            menu_alacarteLink.innerText = "単品";
+        });
+
+        menu_alacarteLink.addEventListener("mouseleave", function () {
+            menu_alacarteLink.innerText = "單點";
+        });
+
+
+        // 飲品甜點變日文字
+        const drinks_and_dessertsLink = document.getElementById("drinks_and_desserts-link");
+
+        drinks_and_dessertsLink.addEventListener("mouseenter", function () {
+            drinks_and_dessertsLink.innerText = "飲み物とデザート";
+        });
+
+        drinks_and_dessertsLink.addEventListener("mouseleave", function () {
+            drinks_and_dessertsLink.innerText = "飲品/甜點";
+        });
+
+        // 關於我們變日文字
+        const aboutusLink = document.getElementById("aboutus-link");
+
+        aboutusLink.addEventListener("mouseenter", function () {
+            aboutusLink.innerText = "会社概要";
+        });
+
+        aboutusLink.addEventListener("mouseleave", function () {
+            aboutusLink.innerText = "關於我們";
+        });
+
+        // 訂位預約變日文字
+        const reservationLink = document.getElementById("reservation-link");
+
+        reservationLink.addEventListener("mouseenter", function () {
+            reservationLink.innerText = "オンライン予約";
+        });
+
+        reservationLink.addEventListener("mouseleave", function () {
+            reservationLink.innerText = "訂位預約";
+        });
+    </script>
+
+
+    <script>        // 以下為首頁圖片輪撥
+        const slideshow = document.getElementById("slideshow");
+        const images = ["hp_1.png", "hp_2.jpg", "hp_3.png", "hp_4.png", "hp_5.jpg", "hp_6.jpg", "hp_7.jpg"];
+
+        let currentImageIndex = 0;
+
+        function changeImage() {
+            slideshow.src = images[currentImageIndex];
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+        }
+
+        window.addEventListener('load', function () {
+            setInterval(changeImage, 4000);
+            changeImage();
+        });
+    </script>
+
+</body>
+
+</html>

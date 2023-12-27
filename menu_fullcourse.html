@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>menu</title>
+    <style>
+        /* 導航欄樣式 */
+        nav {
+            background-color: #333;
+            /* 導航欄背景顏色 */
+            overflow: hidden;
+
+        }
+
+        /* 導航連結樣式 */
+        nav a {
+            font-size: 20px;
+            float: left;
+            /* 使連結在水平方向浮動 */
+            display: block;
+            /* 設置為區塊元素，以便設定寬度、高度和其他樣式 */
+            color: white;
+            /* 文字顏色 */
+            text-align: center;
+            /* 文字居中 */
+            padding: 14px 16px;
+            /* 內邊距，增加連結的可點擊區域 */
+            text-decoration: none;
+            /* 去除下劃線 */
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* 隱藏垂直方向的滾動條 */
+        body {
+            margin: 0;
+        }
+
+        /* 菜單內容排版樣式 */
+        .menu-container {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .menu-item {
+            margin-bottom: 30px;
+        }
+
+        .menu-item h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+
+        .menu-item p {
+            font-size: 27px;
+            margin-bottom: 10px;
+            text-align: center;
+
+        }
+
+        .menu-item span {
+            font-size: 27px;
+            color: #ff6600;
+            /* 橙色文字 */
+        }
+
+        /* 移除列表項目的點（項目符號） */
+        .no-bullets {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* 調整列表項目的內邊距和外邊距 */
+        .no-bullets li {
+            margin-bottom: 5px;
+            font-size: 27px;
+        }
+
+        /* 文字置左的列表 */
+        .left-align {
+            text-align: center;
+        }
+
+        /* 文字置中的服務費提示 */
+        .servicefee {
+            text-align: center;
+        }
+
+        body {
+            background-image: url(menu_background.png);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            /* 讓背景固定 */
+
+        }
+
+        /* 下拉式選單樣式 */
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+        .dropbtn {
+            font-size: 20px;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .misenamae {
+            float: right;
+            /* 讓元素浮動到右邊 */
+            padding: 8px 8px;
+            /* 設定內邊距，使其與其他連結保持一致 */
+        }
+
+        .misenamae img {
+            position: relative;
+            top: 10px;
+            /* 根據需要調整上方偏移值 */
+            height: 40px;
+            width: auto;
+        }
+
+        /* 右邊欄的浮動上下按鈕 */
+        .right_bar_button {
+            position: fixed;
+            /* 固定按鈕的位置 */
+            right: 10px;
+            /* 距離右邊 10 像素 */
+            width: 35px;
+            /* 按鈕的寬度 */
+            height: 35px;
+            /* 按鈕的高度 */
+            border-radius: 50%;
+            /* 按鈕的形狀為圓形 */
+            border: none;
+            /* 去掉按鈕的邊框 */
+            background-color: rgba(0, 0, 0, 0.5);
+            /* 按鈕的背景顏色為半透明的黑色 */
+            color: white;
+            /* 按鈕的文字顏色為白色 */
+            font-size: 20px;
+            /* 按鈕的文字大小 */
+            cursor: pointer;
+            /* 滑鼠移動到按鈕時顯示手指圖示 */
+        }
+
+        /* 定義一個名為 up 的 id，設置按鈕的初始狀態 */
+        #up {
+            display: none;
+            /* 隱藏按鈕 */
+            bottom: 50%;
+            /* 距離下邊 50% */
+            transform: translateY(50%);
+            /* 位移 50% */
+        }
+
+        /* 定義一個名為 down 的 id，設置按鈕的初始狀態 */
+        #down {
+            display: block;
+            /* 顯示按鈕 */
+            bottom: 50%;
+            /* 距離下邊 50% */
+            transform: translateY(-50%);
+            /* 位移 -50% */
+        }
+
+        /* Footer樣式 */
+        footer {
+            background-color: #333;
+            /* 與導航欄相同的背景顏色 */
+            overflow: hidden;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Footer資料訊息樣式 */
+        footer .info {
+            float: left;
+            text-align: left;
+        }
+
+        /* Footer連結樣式 */
+        footer a {
+            font-size: 16px;
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 3px 3px;
+            text-decoration: none;
+        }
+
+        /* Footer連結懸停樣式 */
+        footer a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* Footer ICON樣式 - 去除浮動，使其在水平方向上置中 */
+        footer .social-media {
+            float: right
+        }
+
+        /* 文字提示樣式 - 調整為白色，使其更顯眼 */
+        footer .info p {
+            color: white;
+            font-size: 13px;
+            /* 調整字體大小 */
+            margin: 4px 0;
+            /* 調整邊距 */
+        }
+
+        /* Footer連結懸停樣式 - 增加ICON的懸停效果 */
+        footer a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* Footer ICON大小調整 */
+        footer .social-media img {
+            width: 25px;
+            /* 調整ICON的寬度 */
+            height: auto;
+            /* 保持高度自適應 */
+            margin: 0 2px;
+            /* 添加一些間距，使ICON之間有些距離 */
+        }
+
+        /* Footer ICON懸停效果 */
+        footer .social-media a:hover img {
+            filter: brightness(82%);
+            /* 調整亮度，使ICON變暗 */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 導航欄 -->
+    <nav>
+        <a id="homepage-link" href="homepage.html">首頁</a>
+        <!-- 菜單下拉選單 -->
+        <div class="dropdown">
+            <button id="menu-link" , class="dropbtn">菜單</button>
+            <div class="dropdown-content">
+                <a id="menu_fullcourse-link" href="menu_fullcourse.html">套餐</a>
+                <a id="menu_alacarte-link" href="menu_alacarte.html">單點</a>
+                <a id="drinks_and_desserts-link" href="drinks_and_desserts.pdf#view=FitH&amp;zoom=100"
+                    target="_blank">飲品/甜點</a>
+                <!-- <a href="drinks_and_desserts.pdf" target="_blank">飲品/甜點</a> -->
+
+            </div>
+        </div>
+        <!-- /菜單下拉選單 -->
+        <a id="aboutus-link" href="aboutus.html">關於我們</a>
+        <a id="reservation-link" href="reservation.html">訂位預約</a>
+        <div class="misenamae">
+            <img src="misenamae.jpg" alt="">
+        </div>
+    </nav>
+
+
+    <script> //導航欄變日文字
+
+        // 首頁變日文字
+        const homepageLink = document.getElementById("homepage-link");
+
+        homepageLink.addEventListener("mouseenter", function () {
+            homepageLink.innerText = "ホームページ";
+        });
+
+        homepageLink.addEventListener("mouseleave", function () {
+            homepageLink.innerText = "首頁";
+        });
+
+        //菜單變日文字
+        const menuLink = document.getElementById("menu-link");
+
+        menuLink.addEventListener("mouseenter", function () {
+            menuLink.innerText = "メニュー";
+        });
+
+        menuLink.addEventListener("mouseleave", function () {
+            menuLink.innerText = "菜單";
+        });
+
+        //套餐變日文字
+        const menu_fullcourseLink = document.getElementById("menu_fullcourse-link");
+
+        menu_fullcourseLink.addEventListener("mouseenter", function () {
+            menu_fullcourseLink.innerText = "会席料理";
+        });
+
+        menu_fullcourseLink.addEventListener("mouseleave", function () {
+            menu_fullcourseLink.innerText = "套餐";
+        });
+
+        //單點變日文字
+        const menu_alacarteLink = document.getElementById("menu_alacarte-link");
+
+        menu_alacarteLink.addEventListener("mouseenter", function () {
+            menu_alacarteLink.innerText = "単品";
+        });
+
+        menu_alacarteLink.addEventListener("mouseleave", function () {
+            menu_alacarteLink.innerText = "單點";
+        });
+
+
+        // 飲品甜點變日文字
+        const drinks_and_dessertsLink = document.getElementById("drinks_and_desserts-link");
+
+        drinks_and_dessertsLink.addEventListener("mouseenter", function () {
+            drinks_and_dessertsLink.innerText = "飲み物とデザート";
+        });
+
+        drinks_and_dessertsLink.addEventListener("mouseleave", function () {
+            drinks_and_dessertsLink.innerText = "飲品/甜點";
+        });
+
+        // 關於我們變日文字
+        const aboutusLink = document.getElementById("aboutus-link");
+
+        aboutusLink.addEventListener("mouseenter", function () {
+            aboutusLink.innerText = "会社概要";
+        });
+
+        aboutusLink.addEventListener("mouseleave", function () {
+            aboutusLink.innerText = "關於我們";
+        });
+
+        // 訂位預約變日文字
+        const reservationLink = document.getElementById("reservation-link");
+
+        reservationLink.addEventListener("mouseenter", function () {
+            reservationLink.innerText = "オンライン予約";
+        });
+
+        reservationLink.addEventListener("mouseleave", function () {
+            reservationLink.innerText = "訂位預約";
+        });
+
+    </script>
+    <!-- 在 body 中插入兩個按鈕，分別有不同的 id 和文字 -->
+    <button class="right_bar_button" id="up" onclick="goUp()">▲</button>
+    <button class="right_bar_button" id="down" onclick="goDown()">▼</button>
+    <script>
+        // 定義一個名為 goUp 的函數，用於將網頁滾動到頂部，並切換按鈕的狀態
+        function goUp() {
+            window.scrollTo(0, 0); // 滾動到頂部
+            document.getElementById("up").style.display = "none"; // 隱藏上方按鈕
+            document.getElementById("down").style.display = "block"; // 顯示下方按鈕
+        }
+
+        // 定義一個名為 goDown 的函數，用於將網頁滾動到底部，並切換按鈕的狀態
+        function goDown() {
+            window.scrollTo(0, document.body.scrollHeight); // 滾動到底部
+            document.getElementById("up").style.display = "block"; // 顯示上方按鈕
+            document.getElementById("down").style.display = "none"; // 隱藏下方按鈕
+        }
+
+        // 定義一個名為 toggleButton 的函數，用於根據滾動的位置來切換按鈕的狀態
+        function toggleButton() {
+            // 獲取按鈕元素
+            var upButton = document.getElementById("up");
+            var downButton = document.getElementById("down");
+            // 獲取網頁的滾動位置
+            var scrollY = window.scrollY;
+            // 如果滾動到頂部，則隱藏上方按鈕，顯示下方按鈕
+            if (scrollY == 0) {
+                upButton.style.display = "none";
+                downButton.style.display = "block";
+            }
+            // 如果滾動到底部，則顯示上方按鈕，隱藏下方按鈕
+            if (scrollY == document.body.scrollHeight - window.innerHeight) {
+                upButton.style.display = "block";
+                downButton.style.display = "none";
+            }
+        }
+
+        // 監聽網頁的滾動事件，並執行 toggleButton 函數
+        window.addEventListener("scroll", toggleButton);
+    </script>
+
+    <!-- 菜單內容 -->
+    <div class="menu-container">
+        <h1>套餐</h1>
+        <div class="menu-item">
+            <h2>花</h2>
+            <img src="menu_1hana.jpg" alt="">
+            <p>
+                《套餐內容/共11道菜》
+            <ul class="no-bullets left-align">
+                <li>餐前酒</li>
+                <li>開胃菜</li>
+                <li>煮物</li>
+                <li>特盛時令生魚片（8種）</li>
+                <li>爐端燒牛肉</li>
+                <li>炸物</li>
+                <li>烤魚&烤食蔬</li>
+                <li>釜鍋炊飯（新瀉魚沼越光米）</li>
+                <li>漬菜</li>
+                <li>水果</li>
+                <li>甜點</li>
+            </ul>
+            </p>
+            <span>價格：$5,000</span>
+        </div>
+
+        <div class="menu-item">
+            <h2>月</h2>
+            <img src="menu_2tsuki.jpg" alt="">
+            <p>
+                《套餐內容/共10道菜》
+            <ul class="no-bullets left-align">
+                <li>餐前酒</li>
+                <li>開胃菜</li>
+                <li>煮物</li>
+                <li>大盛時令生魚片（5種）</li>
+                <li>炸物</li>
+                <li>烤魚&烤食蔬</li>
+                <li>味自慢烤飯糰</li>
+                <li>漬菜</li>
+                <li>水果</li>
+                <li>甜點</li>
+            </ul>
+            </p>
+            <span>價格：$3,500</span>
+        </div>
+
+        <div class="menu-item">
+            <h2>雪</h2>
+            <img src="menu_3yuki.jpg" alt="">
+            <p>
+                《套餐內容/共10道菜》
+            <ul class="no-bullets left-align">
+                <li>餐前酒</li>
+                <li>開胃菜</li>
+                <li>煮物</li>
+                <li>並盛時令生魚片（3種）</li>
+                <li>炸物</li>
+                <li>烤食蔬</li>
+                <li>白飯</li>
+                <li>漬菜</li>
+                <li>水果</li>
+                <li>甜點</li>
+            </ul>
+            </p>
+            <span>價格：$1,800</span>
+        </div>
+
+        <div class="menu-item">
+            <h2>兒童套餐</h2>
+            <img src="menu_4kotomo.jpg" alt="" style="width: 530px; height: auto;">
+            <p>
+                《套餐內容/共6道菜》
+            <ul class="no-bullets left-align">
+                <li>馬鈴薯沙拉</li>
+                <li>茶碗蒸</li>
+                <li>芙蓉豆腐</li>
+                <li>精緻食蔬</li>
+                <li>白飯或白粥</li>
+                <li>甜點</li>
+            </ul>
+            </p>
+            <h3 style="color: crimson;">兒童套餐 僅提供給12歲以下兒童</h3>
+            <span>價格：$350</span>
+
+
+        </div>
+
+    </div>
+
+    <h3 class="servicefee">以上餐點酌收10％服務費</h3>
+    <!-- 以下為footer -->
+    <footer>
+        <div class="info">
+            <p>地址：408 台中市南屯區公益路二段51號</p>
+            <p>電話：(04) 2326-5860</p>
+            <p>Email：sandaime@momokuri.com.tw</p>
+            <p>All rights reserved © 2023 三代目 桃栗</p>
+        </div>
+
+        <div class="social-media">
+            <a href="https://www.facebook.com/facebook" target="_blank"><img src="icon-facebook.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/instagram/?igshid=YTQwZjQ0NmI0OA%3D%3D" target="_blank"><img
+                    src="icon-instagram.png" alt="Instagram"></a>
+            <a href="https://twitter.com/XSpaces" target="_blank"><img src="icon-twitter.png" alt="Instagram"></a>
+            <a href="https://line.me/tw/" target="_blank"><img src="icon-line.png" alt="Line"></a>
+        </div>
+    </footer>
+
+
+
+</body>
+
+</html>
